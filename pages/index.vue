@@ -31,7 +31,7 @@ onMounted(() => {
 </script>
 <template>
   <div class="page">
-    <video ref="video" muted="true" control="false" autoplay="true"></video>
+    <video ref="video" playsinline muted autoplay></video>
     <div class="button">SCANNING</div>
   </div>
 </template>
