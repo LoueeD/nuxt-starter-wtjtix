@@ -41,21 +41,19 @@ onMounted(() => {
   min-height: 100vh;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  padding: 30px;
   display: flex;
+  gap: 30px;
 
   video {
     width: 100%;
-    height: 100%;
+    border-radius: 12px;
     background: #000;
   }
 
   .button {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
     padding: 20px;
+    border-radius: 12px;
     text-align: center;
     background: #222;
     color: #fff;
