@@ -45,7 +45,7 @@ onMounted(() => {
 </script>
 <template>
   <div class="page">
-    <video ref="video" playsinline muted autoplay></video>
+    <video id="video" ref="video" playsinline muted autoplay></video>
     <div class="button">SCANNING</div>
     <div class="results">
       {{ selectedDeviceId }}
