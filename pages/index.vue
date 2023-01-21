@@ -1,16 +1,26 @@
 <script setup lang="ts">
-import {
-  MultiFormatReader,
-  BarcodeFormat,
-  DecodeHintType,
-} from '@zxing/library';
-const hints = new Map();
-const formats = [BarcodeFormat.QR_CODE];
-hints.set(DecodeHintType.POSSIBLE_FORMATS, formats);
-const reader = new MultiFormatReader();
-reader.setHints(hints);
+import { BrowserQRCodeReader } from '@zxing/library';
+const codeReader = new BrowserQRCodeReader();
 
 const video = ref<HTMLElement>();
+const selectedDeviceId = ref('');
+const decodedQRCodes = ref([]);
+
+function decodeContinuously() {
+  codeReader.decodeFromInputVideoDeviceContinuously(
+    selectedDeviceId.value,
+    'video',
+    (result, err) => {
+      if (result) {
+        console.log('Found QR code!', result);
+        decodedQRCodes.value.push(result);
+      }
+      if (err) {
+        console.log(err);
+      }
+    }
+  );
+}
 
 onMounted(() => {
   if (navigator.mediaDevices.getUserMedia) {
@@ -20,6 +30,10 @@ onMounted(() => {
     const errorCallback = function (error) {
       console.log(error);
     };
+    codeReader.getVideoInputDevices().then((videoInputDevices) => {
+      selectedDeviceId.value = videoInputDevices[0].deviceId;
+      decodeContinuously();
+    });
     navigator.mediaDevices
       .getUserMedia({
         audio: false,
@@ -33,6 +47,10 @@ onMounted(() => {
   <div class="page">
     <video ref="video" playsinline muted autoplay></video>
     <div class="button">SCANNING</div>
+    <div class="results">
+      {{ selectedDeviceId }}
+      <pre>{{ decodedQRCodes }}</pre>
+    </div>
   </div>
 </template>
 
