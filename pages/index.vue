@@ -48,8 +48,7 @@ onMounted(() => {
     <video id="video" ref="video" playsinline muted autoplay></video>
     <div class="button">SCANNING</div>
     <div class="results">
-      {{ selectedDeviceId }}
-      <pre>{{ decodedQRCodes }}</pre>
+      <pre>{{ decodedQRCodes.map((item) => item.text) }}</pre>
     </div>
   </div>
 </template>
