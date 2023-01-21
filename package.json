@@ -8,6 +8,7 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@kevinmarrec/nuxt-pwa": "^0.15.0",
     "@nuxtjs/pwa": "^3.3.5",
     "nuxt": "^3.0.0"
   },
