@@ -12,6 +12,7 @@
     "nuxt": "^3.0.0"
   },
   "dependencies": {
+    "@zxing/library": "^0.19.1",
     "sass": "^1.57.1"
   }
 }
